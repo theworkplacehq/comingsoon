@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional workplace intelligence platform providing verified insights, salary data, and authentic workplace experiences for smarter career decisions.">
+    <meta name="keywords" content="workplace intelligence, salary data, career decisions, company reviews, professional insights">
+    <title>The Workplace - Coming Soon - Professional Workplace Intelligence</title>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <!-- Load fonts with font-display: swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#475569',
+                        accent: '#3B82F6',
+                        gold: '#F59E0B',
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                    screens: {
+                        'xs': '475px',
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .font-display { 
+            font-family: 'Playfair Display', ui-serif, Georgia, serif; 
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus styles for accessibility */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid #3B82F6;
+            outline-offset: 2px;
+        }
+        
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Mobile menu improvements */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900 antialiased">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded z-50">
+        Skip to main content
+    </a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100" role="navigation" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="#hero" class="focus:outline-none" aria-label="The Workplace - Home">
+                        <img src="./horizontal-logo.png" alt="The Workplace Logo" class="max-h-10 w-auto">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-secondary hover:text-primary transition-colors focus:text-primary">Features</a>
+                    <a href="mailto:contact@theworkplace.co" target="_blank" class="text-secondary hover:text-primary transition-colors focus:text-primary">Contact</a>
+                    <a href="https://github.com/theworkplacehq" target="_blank" class="text-secondary hover:text-primary transition-colors focus:text-primary">GitHub</a>
+                    <button onclick="scrollToSignup()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-slate-800 focus:bg-slate-800 transition-colors">
+                        Early Access
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-secondary hover:text-primary p-2" aria-label="Toggle menu" aria-expanded="false">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu fixed top-16 right-0 h-screen w-64 bg-white shadow-xl md:hidden">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#features" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Features</a>
+                <a href="#contact" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Contact</a>
+                <button onclick="scrollToSignup(); closeMobileMenu();" class="w-full bg-primary text-white px-6 py-3 rounded-full hover:bg-slate-800 transition-colors">
+                    Early Access
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero-bg min-h-screen flex items-center relative overflow-hidden" id="hero">
+            <!-- Subtle floating elements -->
+            <div class="absolute inset-0 overflow-hidden opacity-20" aria-hidden="true">
+                <div class="absolute top-1/4 left-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-blue-400 rounded-full filter blur-3xl animate-float"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-indigo-400 rounded-full filter blur-3xl animate-float" style="animation-delay: -3s;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                <div class="text-center">
+                    <div class="flex items-center justify-center mb-8">
+                        <img src="./logo.png" alt="The Workplace" class="max-h-48 sm:max-h-64 md:max-h-80 lg:max-h-96 w-auto" />
+                    </div>
+                    
+                    <h1 class="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 sm:mb-12 animate-fade-in">
+                        Transparency. Trust.
+                        <span class="block gradient-text text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">Reputation.</span>
+                    </h1>
+                    
+                    <p class="text-base xs:text-lg sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 sm:mb-12 animate-slide-up px-4">
+                        We're building a platform that enables professionals to identify problems, develop solutions, and drive growth 
+                        by providing targeted audiences with both raw and analyzed data across specific categories.
+                    </p>
+                    
+                    <p class="text-base xs:text-lg sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 sm:mb-12 animate-slide-up px-4">
+                        Access verified insights, real compensation data, and authentic workplace experiences 
+                        from professionals across industries.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 sm:mb-16 animate-slide-up px-4">
+                        <button onclick="scrollToSignup()" class="w-full sm:w-auto bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-blue-600 focus:bg-blue-600 transition-all transform hover:scale-105 focus:scale-105">
+                            Join the Waitlist
+                        </button>
+                    </div>
+                    
+                    <!-- Trust indicators -->
+                    <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-gray-400 px-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-green-400 rounded-full" aria-hidden="true"></div>
+                            <span class="text-sm sm:text-base">1,200+ Professionals</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full" aria-hidden="true"></div>
+                            <span class="text-sm sm:text-base">Verified Data</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full" aria-hidden="true"></div>
+                            <span class="text-sm sm:text-base">100% Anonymous</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition -->
+        <section class="py-16 sm:py-20 md:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
+                        Make Informed Career Decisions
+                    </h2>
+                    <p class="text-lg sm:text-xl text-secondary max-w-3xl mx-auto">
+                        Stop guessing about your next career move. Get access to the workplace intelligence 
+                        that matters most to your professional growth.
+                    </p>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="text-center group">
+                        <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold text-primary mb-4">Real Salary Data</h3>
+                        <p class="text-secondary text-sm sm:text-base">
+                            Access verified compensation information including base salary, bonuses, 
+                            and benefits from actual employees.
+                        </p>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold text-primary mb-4">Verified Reviews</h3>
+                        <p class="text-secondary text-sm sm:text-base">
+                            Read authentic workplace experiences from verified professionals 
+                            without fear of bias or fake reviews.
+                        </p>
+                    </div>
+                    
+                    <div class="text-center group sm:col-span-2 lg:col-span-1">
+                        <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold text-primary mb-4">Career Intelligence</h3>
+                        <p class="text-secondary text-sm sm:text-base">
+                            Understand promotion timelines, skill requirements, and career paths 
+                            based on real professional journeys.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 sm:py-20 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
+                        Comprehensive Workplace Insights
+                    </h2>
+                    <p class="text-lg sm:text-xl text-secondary max-w-3xl mx-auto">
+                        Everything you need to evaluate potential employers and make confident career decisions.
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16">
+                    <div>
+                        <div class="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                            COMPENSATION TRANSPARENCY
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-primary mb-6">
+                            Know Your Worth Before You Apply
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0" aria-hidden="true">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1">Salary Ranges by Role</h4>
+                                    <p class="text-secondary text-sm sm:text-base">Detailed compensation data broken down by experience level and location</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0" aria-hidden="true">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1">Benefits Analysis</h4>
+                                    <p class="text-secondary text-sm sm:text-base">Comprehensive breakdown of health, retirement, and additional benefits</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0" aria-hidden="true">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1">Market Comparisons</h4>
+                                    <p class="text-secondary text-sm sm:text-base">See how companies stack up against industry and regional standards</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-3xl p-6 sm:p-8">
+                        <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-semibold text-primary text-sm sm:text-base">Senior Software Engineer</h4>
+                                <span class="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">Verified</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-secondary text-sm sm:text-base">Base Salary</span>
+                                    <span class="font-semibold text-sm sm:text-base">$120k - $150k</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-secondary text-sm sm:text-base">Annual Bonus</span>
+                                    <span class="font-semibold text-sm sm:text-base">$15k - $25k</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-secondary text-sm sm:text-base">Stock Options</span>
+                                    <span class="font-semibold text-sm sm:text-base">$20k - $40k</span>
+                                </div>
+                                <div class="border-t pt-3">
+                                    <div class="flex justify-between font-semibold">
+                                        <span class="text-sm sm:text-base">Total Compensation</span>
+                                        <span class="text-accent text-sm sm:text-base">$155k - $215k</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Interview Experiences</h4>
+                        <p class="text-secondary text-sm">Detailed interview processes, questions, and preparation tips from actual candidates.</p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Company Culture</h4>
+                        <p class="text-secondary text-sm">Authentic insights into work environment, values, and day-to-day experiences.</p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Career Growth</h4>
+                        <p class="text-secondary text-sm">Promotion timelines, skill development opportunities, and advancement paths.</p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
+                            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Performance Metrics</h4>
+                        <p class="text-secondary text-sm">Company performance indicators, employee satisfaction scores, and retention rates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+    <section id="signup" class="py-24 bg-primary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Make Smarter Career Decisions?
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                Join our exclusive waitlist and be among the first to access the most comprehensive 
+                workplace intelligence platform.
+            </p>
+            
+            <form class="max-w-md mx-auto mb-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your professional email" 
+                        required
+                        class="flex-1 px-6 py-4 rounded-full text-lg focus:outline-none focus:ring-4 focus:ring-accent/30 bg-white"
+                    >
+                    <button 
+                        type="submit" 
+                        class="bg-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-600 transition-colors whitespace-nowrap"
+                    >
+                        Join Waitlist
+                    </button>
+                </div>
+            </form>
+            
+            <div class="flex flex-wrap justify-center items-center gap-8 text-gray-400">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>1,200+ Professionals Waiting</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Privacy Protected</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>No Spam, Ever</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="md:col-span-2">
+                    <div class="font-display text-3xl font-bold mb-4">theworkplace.</div>
+                    <p class="text-gray-400 max-w-md">
+                        Professional workplace intelligence platform providing verified insights 
+                        for smarter career decisions.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">contact@theworkplace.co</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section-divider mb-8"></div>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    © 2025 The Workplace. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSignup() {
+            document.getElementById('signup').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Form handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Thank you for joining our waitlist! We\'ll notify you when The Workplace launches.');
+                this.querySelector('input[type="email"]').value = '';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white/95');
+                nav.classList.remove('bg-white/80');
+            } else {
+                nav.classList.add('bg-white/80');
+                nav.classList.remove('bg-white/95');
+            }
+        });
+        
+        function toggleMobileMenu() {
+          const mobileMenu = document.getElementById('mobile-menu');
+          const menuButton = document.querySelector('[aria-label="Toggle menu"]');
+
+          mobileMenu.classList.toggle('active');
+
+          // Update aria-expanded for accessibility
+          const isExpanded = mobileMenu.classList.contains('active');
+          menuButton.setAttribute('aria-expanded', isExpanded);
+
+          // Toggle hamburger to X icon
+          const svg = menuButton.querySelector('svg');
+          if (isExpanded) {
+              svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+          } else {
+              svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+          }
+        }
+        
+        function closeMobileMenu() {
+          const mobileMenu = document.getElementById('mobile-menu');
+          const menuButton = document.querySelector('[aria-label="Toggle menu"]');
+          const svg = menuButton.querySelector('svg');
+
+          mobileMenu.classList.remove('active');
+          menuButton.setAttribute('aria-expanded', 'false');
+          svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+        }
+    </script>
+</body>
+</html>
