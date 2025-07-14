@@ -605,7 +605,9 @@
 
     <script>
         // Configuration
-        const API_BASE_URL = 'https://theworkplace.onrender.com';
+        const SUPABASE_URL = 'https://qmzjwgefofqtahinkiil.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFtemp3Z2Vmb2ZxdGFoaW5raWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MDQ2MDEsImV4cCI6MjA2ODA4MDYwMX0.TjqbafdTB4vv3kBHwU2VJHCUkQiZE5GazyzqEM5QOzE';
+        const SECURE_PROXY_URL = `${SUPABASE_URL}/functions/v1/secure-email-proxy`;
         const DEBUG = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
         // Helper functions
@@ -722,52 +724,62 @@
                     waitlistCount.classList.add('counter-loading');
                 }
                 
-                const response = await fetch(`${API_BASE_URL}/email-subscribers?status=subscribed`, {
-                    method: 'GET',
+                // Call secure proxy for subscriber count
+                const response = await fetch(SECURE_PROXY_URL, {
+                    method: 'POST',
                     headers: {
-                        'Accept': 'application/json',
-                    }
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    },
+                    body: JSON.stringify({
+                        action: 'count'
+                    })
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    const count = data.data.count;
-                    log('Subscriber count received:', count);
-                    
-                    // Format the count for display
-                    let displayCount;
-                    if (count >= 1000) {
-                        // Show as "1.2K" for 1200, "2.5K" for 2500, etc.
-                        displayCount = (count / 1000).toFixed(1).replace('.0', '') + 'K+';
-                    } else {
-                        displayCount = count + '+';
-                    }
-                    
-                    // Update both counters with smooth transition
-                    if (heroCount) {
-                        heroCount.classList.remove('counter-loading');
-                        heroCount.style.transition = 'opacity 0.3s ease';
-                        heroCount.style.opacity = '0.5';
-                        setTimeout(() => {
-                            heroCount.textContent = `${displayCount} Professionals`;
-                            heroCount.style.opacity = '1';
-                        }, 150);
-                    }
-                    
-                    if (waitlistCount) {
-                        waitlistCount.classList.remove('counter-loading');
-                        waitlistCount.style.transition = 'opacity 0.3s ease';
-                        waitlistCount.style.opacity = '0.5';
-                        setTimeout(() => {
-                            waitlistCount.textContent = `${displayCount} Professionals Waiting`;
-                            waitlistCount.style.opacity = '1';
-                        }, 150);
-                    }
-                    
-                    log('Subscriber count updated to:', displayCount);
-                } else {
+                if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
+
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.error || 'Unknown error');
+                }
+
+                const count = data.count;
+                log('Subscriber count received:', count);
+                
+                // Format the count for display
+                let displayCount;
+                if (count >= 1000) {
+                    // Show as "1.2K" for 1200, "2.5K" for 2500, etc.
+                    displayCount = (count / 1000).toFixed(1).replace('.0', '') + 'K+';
+                } else {
+                    displayCount = count + '+';
+                }
+                
+                // Update both counters with smooth transition
+                if (heroCount) {
+                    heroCount.classList.remove('counter-loading');
+                    heroCount.style.transition = 'opacity 0.3s ease';
+                    heroCount.style.opacity = '0.5';
+                    setTimeout(() => {
+                        heroCount.textContent = `${displayCount} Professionals`;
+                        heroCount.style.opacity = '1';
+                    }, 150);
+                }
+                
+                if (waitlistCount) {
+                    waitlistCount.classList.remove('counter-loading');
+                    waitlistCount.style.transition = 'opacity 0.3s ease';
+                    waitlistCount.style.opacity = '0.5';
+                    setTimeout(() => {
+                        waitlistCount.textContent = `${displayCount} Professionals Waiting`;
+                        waitlistCount.style.opacity = '1';
+                    }, 150);
+                }
+                
+                log('Subscriber count updated to:', displayCount);
             } catch (error) {
                 log('Failed to update subscriber count:', error);
                 // Remove loading state and fallback to default values
@@ -815,60 +827,72 @@
             setFormState('loading');
 
             try {
-                const response = await fetch(`${API_BASE_URL}/email-subscribers/subscribe`, {
+                // Call secure proxy for subscription
+                const response = await fetch(SECURE_PROXY_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
                     },
-                    body: JSON.stringify({ email: email })
+                    body: JSON.stringify({
+                        email: email,
+                        action: 'subscribe'
+                    })
                 });
 
                 const data = await response.json();
-                log('API Response:', { status: response.status, data });
+                log('Secure proxy response:', { status: response.status, data });
 
-                if (response.ok) {
-                    const isNewSubscription = response.status === 201;
-                    const message = isNewSubscription 
-                        ? '🎉 Welcome to the waitlist! We\'ll notify you when The Workplace launches.'
-                        : '✨ You\'re back on the waitlist! We\'ll keep you updated on The Workplace.';
-                    
-                    showNotification(message, 'success', 7000);
-                    setFormState('success');
-                    
-                    // Update subscriber count
-                    setTimeout(updateSubscriberCount, 1000);
-                    
-                } else {
-                    // Handle API errors
-                    let errorMessage = 'Something went wrong. Please try again.';
-                    
-                    if (data.error) {
-                        switch (data.error.type) {
-                            case 'BAD_REQUEST':
-                                if (data.error.description?.includes('already subscribed')) {
-                                    errorMessage = 'This email is already on our waitlist! We\'ll notify you when we launch.';
-                                    showNotification(errorMessage, 'warning', 6000);
-                                    setFormState('success');
-                                    return;
-                                } else {
-                                    errorMessage = data.error.description || 'Invalid email address.';
-                                }
-                                break;
-                            case 'VALIDATION_ERROR':
-                                errorMessage = 'Please check your email address format.';
-                                break;
-                            default:
-                                errorMessage = data.error.description || errorMessage;
-                        }
+                if (!response.ok) {
+                    if (response.status === 403) {
+                        // Origin not allowed
+                        showNotification('Access denied: Invalid origin.', 'error');
+                        setFormState('error');
+                        return;
                     }
                     
-                    showNotification(errorMessage, 'error');
-                    setFormState('error');
+                    throw new Error(data.error || 'Server error');
+                }
+
+                if (!data.success) {
+                    throw new Error(data.error || 'Unknown error');
+                }
+
+                // Handle successful responses
+                if (data.alreadySubscribed) {
+                    showNotification('This email is already on our waitlist! We\'ll notify you when we launch.', 'warning', 6000);
+                    setFormState('success');
+                } else if (data.isResubscription) {
+                    showNotification('✨ You\'re back on the waitlist! We\'ll keep you updated on The Workplace.', 'success', 7000);
+                    setFormState('success');
+                    // Update subscriber count
+                    setTimeout(updateSubscriberCount, 1000);
+                } else if (data.isNewSubscription) {
+                    showNotification('🎉 Welcome to the waitlist! We\'ll notify you when The Workplace launches.', 'success', 7000);
+                    setFormState('success');
+                    // Update subscriber count
+                    setTimeout(updateSubscriberCount, 1000);
+                } else {
+                    // Generic success message
+                    showNotification('Successfully subscribed to the waitlist!', 'success', 7000);
+                    setFormState('success');
+                    setTimeout(updateSubscriberCount, 1000);
                 }
 
             } catch (error) {
-                log('Network error:', error);
-                showNotification('Network error. Please check your connection and try again.', 'error');
+                log('Subscription error:', error);
+                
+                let errorMessage = 'Something went wrong. Please try again.';
+                
+                if (error.message.includes('Invalid email')) {
+                    errorMessage = 'Please enter a valid email address.';
+                } else if (error.message.includes('Unauthorized origin')) {
+                    errorMessage = 'Access denied: Request not allowed from this domain.';
+                } else if (error.message.includes('Network')) {
+                    errorMessage = 'Network error. Please check your connection and try again.';
+                }
+                
+                showNotification(errorMessage, 'error');
                 setFormState('error');
             }
         }
