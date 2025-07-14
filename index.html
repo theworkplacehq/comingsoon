@@ -606,7 +606,6 @@
     <script>
         // Configuration
         const SUPABASE_URL = 'https://qmzjwgefofqtahinkiil.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFtemp3Z2Vmb2ZxdGFoaW5raWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MDQ2MDEsImV4cCI6MjA2ODA4MDYwMX0.TjqbafdTB4vv3kBHwU2VJHCUkQiZE5GazyzqEM5QOzE';
         const SECURE_PROXY_URL = `${SUPABASE_URL}/functions/v1/secure-email-proxy`;
         const DEBUG = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
@@ -729,7 +728,6 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
                     },
                     body: JSON.stringify({
                         action: 'count'
@@ -832,7 +830,6 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
                     },
                     body: JSON.stringify({
                         email: email,
