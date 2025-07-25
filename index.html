@@ -240,6 +240,7 @@
             border-color: #10b981;
             box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
         }
+        
     </style>
 </head>
 
@@ -254,7 +255,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="#hero" class="focus:outline-none" aria-label="The Workplace - Home">
+                    <a href="index.html" class="focus:outline-none" aria-label="The Workplace - Home">
                         <img src="./horizontal-logo.png" alt="The Workplace Logo" class="max-h-10 w-auto">
                     </a>
                 </div>
@@ -262,6 +263,7 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#features" class="text-secondary hover:text-primary transition-colors focus:text-primary">Features</a>
+                    <a href="survey.html" class="text-secondary hover:text-primary transition-colors focus:text-primary">Survey</a>
                     <a href="mailto:contact@theworkplace.co" target="_blank" class="text-secondary hover:text-primary transition-colors focus:text-primary">Contact</a>
                     <a href="https://github.com/theworkplacehq" target="_blank" class="text-secondary hover:text-primary transition-colors focus:text-primary">GitHub</a>
                     <button onclick="scrollToSignup()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-slate-800 focus:bg-slate-800 transition-colors">
@@ -284,7 +286,8 @@
         <div id="mobile-menu" class="mobile-menu fixed top-16 right-0 h-screen w-64 bg-white shadow-xl md:hidden">
             <div class="px-4 py-6 space-y-4">
                 <a href="#features" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Features</a>
-                <a href="#contact" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Contact</a>
+                <a href="survey.html" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Survey</a>
+                <a href="mailto:contact@theworkplace.co" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Contact</a>
                 <button onclick="scrollToSignup(); closeMobileMenu();" class="w-full bg-primary text-white px-6 py-3 rounded-full hover:bg-slate-800 transition-colors">
                     Early Access
                 </button>
@@ -527,6 +530,7 @@
                 </div>
             </div>
         </section>
+
 
         <!-- CTA Section -->
     <section id="signup" class="py-24 bg-primary">
