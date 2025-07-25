@@ -13,66 +13,53 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional workplace intelligence platform providing verified insights, salary data, and authentic workplace experiences for smarter career decisions.">
-    <meta name="keywords" content="workplace intelligence, salary data, career decisions, company reviews, professional insights">
-    <title>The Workplace - Coming Soon - Professional Workplace Intelligence</title>
+    <meta name="description" content="The Workplace - Transform your career with verified workplace insights, transparent salary data, and authentic professional experiences. Make informed career decisions with confidence.">
+    <meta name="keywords" content="the workplace, theworkplace, workplace intelligence, salary transparency, career decisions, company reviews, professional insights, workplace culture">
+    <meta name="author" content="The Workplace">
+    <meta name="robots" content="index, follow">
+    <title>The Workplace - Professional Workplace Intelligence Platform</title>
 
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Preconnect to external domains -->
+    <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://qmzjwgefofqtahinkiil.supabase.co">
     
     <!-- Load fonts with font-display: swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- External CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Tailwind CSS for additional utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0F172A',
-                        secondary: '#475569',
-                        accent: '#3B82F6',
-                        gold: '#F59E0B',
+                        primary: '#6366F1',
+                        'primary-dark': '#4F46E5', 
+                        'primary-light': '#8B5CF6',
+                        secondary: '#1F2937',
+                        'secondary-light': '#374151',
+                        accent: '#F97316',
+                        'accent-light': '#FB923C',
+                        success: '#10B981',
+                        'success-light': '#34D399',
+                        neutral: '#6B7280',
+                        'neutral-light': '#9CA3AF',
+                        'warm-gray': '#F9FAFB',
                     },
                     fontFamily: {
-                        'display': ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+                        'display': ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
                         'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 1s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'float': 'float 6s ease-in-out infinite',
-                        'notification-in': 'notificationIn 0.3s ease-out',
-                        'notification-out': 'notificationOut 0.3s ease-in',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        notificationIn: {
-                            '0%': { opacity: '0', transform: 'translateX(100%)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        notificationOut: {
-                            '0%': { opacity: '1', transform: 'translateX(0)' },
-                            '100%': { opacity: '0', transform: 'translateX(100%)' },
-                        },
                     },
                     screens: {
                         'xs': '475px',
@@ -81,270 +68,110 @@
             }
         }
     </script>
-    
-    <style>
-        body { 
-            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-            line-height: 1.6;
-        }
-        
-        .font-display { 
-            font-family: 'Playfair Display', ui-serif, Georgia, serif; 
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
-        }
-        
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%);
-        }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Focus styles for accessibility */
-        button:focus-visible,
-        a:focus-visible,
-        input:focus-visible {
-            outline: 2px solid #3B82F6;
-            outline-offset: 2px;
-        }
-        
-        /* Reduce motion for users who prefer it */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* Mobile menu improvements */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-        
-        /* Loading spinner */
-        .loading-spinner {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #ffffff;
-            animation: spin 0.8s linear infinite;
-            margin-left: 8px;
-            flex-shrink: 0;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Button loading state improvements */
-        .button-loading {
-            position: relative;
-            pointer-events: none;
-        }
-        
-        .button-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        
-        .button-loading .button-content {
-            opacity: 0.8;
-        }
-        
-        /* Counter loading animation */
-        .counter-loading {
-            position: relative;
-            color: rgba(156, 163, 175, 0.6) !important;
-        }
-        
-        .counter-loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        /* Notification styles */
-        .notification-message {
-            animation: notificationIn 0.3s ease-out;
-            max-width: 400px;
-            word-wrap: break-word;
-        }
-        
-        .notification-message.hiding {
-            animation: notificationOut 0.3s ease-in;
-        }
-        
-        /* Form states */
-        .form-loading {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-        
-        .form-error input {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-        
-        .form-success input {
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-        
-    </style>
 </head>
 
-<body class="bg-white text-gray-900 antialiased">
+<body>
     <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded z-50">
+    <a href="#main-content" class="skip-link">
         Skip to main content
     </a>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100" role="navigation" aria-label="Main navigation">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <a href="index.html" class="focus:outline-none" aria-label="The Workplace - Home">
-                        <img src="./horizontal-logo.png" alt="The Workplace Logo" class="max-h-10 w-auto">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="navbar-container">
+                <div class="navbar-brand">
+                    <a href="index.html" aria-label="The Workplace - Professional Workplace Intelligence Platform">
+                        <img src="./horizontal-logo.png" alt="The Workplace" />
                     </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-secondary hover:text-primary transition-colors focus:text-primary">Features</a>
-                    <a href="survey.html" class="text-secondary hover:text-primary transition-colors focus:text-primary">Survey</a>
-                    <a href="mailto:contact@theworkplace.co" target="_blank" class="text-secondary hover:text-primary transition-colors focus:text-primary">Contact</a>
-                    <a href="https://github.com/theworkplacehq" target="_blank" class="text-secondary hover:text-primary transition-colors focus:text-primary">GitHub</a>
-                    <button onclick="scrollToSignup()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-slate-800 focus:bg-slate-800 transition-colors">
+                <div class="navbar-nav">
+                    <a href="#features">Features</a>
+                    <a href="survey.html">Survey</a>
+                    <a href="mailto:contact@theworkplace.co" target="_blank" rel="noopener">Contact</a>
+                    <a href="https://github.com/theworkplacehq" target="_blank" rel="noopener">GitHub</a>
+                    <button onclick="scrollToSignup()" class="btn btn-primary">
                         Early Access
                     </button>
                 </div>
                 
                 <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button onclick="toggleMobileMenu()" class="text-secondary hover:text-primary p-2" aria-label="Toggle menu" aria-expanded="false">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
         
         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="mobile-menu fixed top-16 right-0 h-screen w-64 bg-white shadow-xl md:hidden">
-            <div class="px-4 py-6 space-y-4">
-                <a href="#features" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Features</a>
-                <a href="survey.html" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Survey</a>
-                <a href="mailto:contact@theworkplace.co" onclick="closeMobileMenu()" class="block text-secondary hover:text-primary transition-colors py-2">Contact</a>
-                <button onclick="scrollToSignup(); closeMobileMenu();" class="w-full bg-primary text-white px-6 py-3 rounded-full hover:bg-slate-800 transition-colors">
-                    Early Access
-                </button>
-            </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#features" onclick="closeMobileMenu()">Features</a>
+            <a href="survey.html" onclick="closeMobileMenu()">Survey</a>
+            <a href="mailto:contact@theworkplace.co" onclick="closeMobileMenu()" target="_blank" rel="noopener">Contact</a>
+            <a href="https://github.com/theworkplacehq" onclick="closeMobileMenu()" target="_blank" rel="noopener">GitHub</a>
+            <button onclick="scrollToSignup(); closeMobileMenu();" class="btn btn-primary w-full mt-4">
+                Early Access
+            </button>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero-bg min-h-screen flex items-center relative overflow-hidden" id="hero">
-            <!-- Subtle floating elements -->
-            <div class="absolute inset-0 overflow-hidden opacity-20" aria-hidden="true">
-                <div class="absolute top-1/4 left-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-blue-400 rounded-full filter blur-3xl animate-float"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-indigo-400 rounded-full filter blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <section class="hero" id="hero">
+            <!-- Background Elements -->
+            <div class="hero-bg-elements" aria-hidden="true">
+                <div style="top: 25%; left: 25%; width: 16rem; height: 16rem; background: var(--primary);"></div>
+                <div style="bottom: 25%; right: 25%; width: 24rem; height: 24rem; background: var(--accent); animation-delay: -3s;"></div>
+                <div style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10rem; height: 10rem; background: var(--success); animation-delay: -5s;"></div>
             </div>
             
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-                <div class="text-center">
-                    <div class="flex items-center justify-center mb-8">
-                        <img src="./logo.png" alt="The Workplace" class="max-h-48 w-auto" />
+            <div class="container">
+                <div class="hero-content">
+                    <div class="flex items-center justify-center mb-8 animate-fade-in">
+                        <div class="relative">
+                            <img src="./logo.png" alt="The Workplace - Azerbaijan's Workplace Transparency Platform" class="max-h-48 w-auto drop-shadow-2xl" />
+                        </div>
                     </div>
                     
-                    <h1 class="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 sm:mb-12 animate-fade-in">
-                        Transparency. Trust.
-                        <span class="block gradient-text text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">Reputation.</span>
+                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 animate-slide-up">
+                        Coming Soon
+                        <span class="gradient-text block mt-4">Transparency. Trust. Reputation.</span>
                     </h1>
                     
-                    <p class="text-base xs:text-lg sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 sm:mb-12 animate-slide-up px-4">
-                        We're building a platform that enables professionals to identify problems, develop solutions, and drive growth 
-                        by providing targeted audiences with both raw and analyzed data across specific categories.
+                    <p class="text-lg sm:text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8 animate-slide-in-left leading-relaxed">
+                        Transforming workplace transparency through intelligent data insights and authentic professional experiences.
                     </p>
                     
-                    <p class="text-base xs:text-lg sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 sm:mb-12 animate-slide-up px-4">
-                        Access verified insights, real compensation data, and authentic workplace experiences 
-                        from professionals across industries.
+                    <p class="text-base sm:text-lg text-gray-100 max-w-3xl mx-auto mb-12 animate-slide-in-right leading-relaxed">
+                        Access verified compensation data, authentic workplace experiences, and career intelligence from professionals across industries.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 sm:mb-16 animate-slide-up px-4">
-                        <button onclick="scrollToSignup()" class="w-full sm:w-auto bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-blue-600 focus:bg-blue-600 transition-all transform hover:scale-105 focus:scale-105">
-                            Join the Waitlist
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in">
+                        <button onclick="scrollToSignup()" class="btn btn-accent text-lg px-8 py-4">
+                            Join the Revolution
                         </button>
+                        <a href="#features" class="btn btn-ghost text-lg px-8 py-4">
+                            Explore Features
+                        </a>
                     </div>
                     
                     <!-- Trust indicators -->
-                    <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-gray-400 px-4">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 bg-green-400 rounded-full" aria-hidden="true"></div>
-                            <span class="text-sm sm:text-base" id="subscriber-count">Loading...</span>
+                    <div class="flex flex-wrap justify-center items-center gap-6 text-white animate-fade-in">
+                        <div class="glass-effect px-6 py-3 rounded-full flex items-center gap-3 border border-white/20">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse" aria-hidden="true"></div>
+                            <span class="text-sm font-semibold" id="subscriber-count">Loading...</span>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 bg-blue-400 rounded-full" aria-hidden="true"></div>
-                            <span class="text-sm sm:text-base">Verified Data</span>
+                        <div class="glass-effect px-6 py-3 rounded-full flex items-center gap-3 border border-white/20">
+                            <div class="w-3 h-3 bg-blue-400 rounded-full animate-pulse" aria-hidden="true"></div>
+                            <span class="text-sm font-semibold">Digital Finance Verified</span>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 bg-purple-400 rounded-full" aria-hidden="true"></div>
-                            <span class="text-sm sm:text-base">100% Anonymous</span>
+                        <div class="glass-effect px-6 py-3 rounded-full flex items-center gap-3 border border-white/20">
+                            <div class="w-3 h-3 bg-orange-400 rounded-full animate-pulse" aria-hidden="true"></div>
+                            <span class="text-sm font-semibold">GDPR Compliant</span>
                         </div>
                     </div>
                 </div>
@@ -352,53 +179,73 @@
         </section>
 
         <!-- Value Proposition -->
-        <section class="py-16 sm:py-20 md:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-warm-gray via-white to-primary/5 relative overflow-hidden">
+            <!-- Background decoration -->
+            <div class="absolute inset-0 overflow-hidden opacity-5" aria-hidden="true">
+                <div class="absolute top-10 left-10 w-72 h-72 bg-primary rounded-full filter blur-3xl animate-float"></div>
+                <div class="absolute bottom-10 right-10 w-96 h-96 bg-accent rounded-full filter blur-3xl animate-float" style="animation-delay: -4s;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center mb-12 sm:mb-16">
-                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
-                        Make Informed Career Decisions
+                    <div class="inline-block bg-primary/10 text-primary px-6 py-2 rounded-full text-sm font-bold mb-6 animate-fade-in">
+                        INTELLIGENT INSIGHTS
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-secondary mb-6 sm:mb-8 animate-slide-up">
+                        Make 
+                        <span class="gradient-text">Informed Career</span>
+                        Decisions
                     </h2>
-                    <p class="text-lg sm:text-xl text-secondary max-w-3xl mx-auto">
+                    <p class="text-lg sm:text-xl text-neutral max-w-3xl mx-auto leading-relaxed animate-slide-up">
                         Stop guessing about your next career move. Get access to the workplace intelligence 
-                        that matters most to your professional growth.
+                        that matters most to your professional growth and success.
                     </p>
                 </div>
                 
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="text-center group">
-                        <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+                    <div class="text-center group animate-slide-in-left">
+                        <div class="relative">
+                            <div class="w-20 h-20 bg-gradient-to-br from-success to-success-light rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 warm-glow">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute -inset-2 bg-gradient-to-r from-success/20 to-success-light/20 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"></div>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-semibold text-primary mb-4">Real Salary Data</h3>
-                        <p class="text-secondary text-sm sm:text-base">
+                        <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 font-display">Real Salary Data</h3>
+                        <p class="text-neutral text-sm sm:text-base leading-relaxed">
                             Access verified compensation information including base salary, bonuses, 
-                            and benefits from actual employees.
+                            and benefits from actual employees across industries.
                         </p>
                     </div>
                     
-                    <div class="text-center group">
-                        <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
+                    <div class="text-center group animate-slide-up">
+                        <div class="relative">
+                            <div class="w-20 h-20 bg-gradient-to-br from-primary to-primary-light rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 warm-glow">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute -inset-2 bg-gradient-to-r from-primary/20 to-primary-light/20 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"></div>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-semibold text-primary mb-4">Verified Reviews</h3>
-                        <p class="text-secondary text-sm sm:text-base">
+                        <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 font-display">Verified Reviews</h3>
+                        <p class="text-neutral text-sm sm:text-base leading-relaxed">
                             Read authentic workplace experiences from verified professionals 
                             without fear of bias or fake reviews.
                         </p>
                     </div>
                     
-                    <div class="text-center group sm:col-span-2 lg:col-span-1">
-                        <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                            </svg>
+                    <div class="text-center group sm:col-span-2 lg:col-span-1 animate-slide-in-right">
+                        <div class="relative">
+                            <div class="w-20 h-20 bg-gradient-to-br from-accent to-accent-light rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 warm-glow">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute -inset-2 bg-gradient-to-r from-accent/20 to-accent-light/20 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"></div>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-semibold text-primary mb-4">Career Intelligence</h3>
-                        <p class="text-secondary text-sm sm:text-base">
+                        <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 font-display">Career Intelligence</h3>
+                        <p class="text-neutral text-sm sm:text-base leading-relaxed">
                             Understand promotion timelines, skill requirements, and career paths 
                             based on real professional journeys.
                         </p>
@@ -408,23 +255,28 @@
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="py-16 sm:py-20 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12 sm:mb-16">
-                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
-                        Comprehensive Workplace Insights
+        <section id="features" class="py-24 bg-white relative overflow-hidden">
+            <div class="container relative z-10">
+                <div class="text-center mb-16">
+                    <div class="inline-block bg-orange-100 text-orange-600 px-6 py-2 rounded-full text-sm font-bold mb-6 animate-fade-in">
+                        COMPREHENSIVE PLATFORM
+                    </div>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-8 animate-slide-up">
+                        Complete
+                        <span class="gradient-text">Workplace Insights</span>
                     </h2>
-                    <p class="text-lg sm:text-xl text-secondary max-w-3xl mx-auto">
-                        Everything you need to evaluate potential employers and make confident career decisions.
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed animate-slide-up">
+                        Everything you need to evaluate potential employers and make confident career decisions 
+                        with data-driven insights from The Workplace community.
                     </p>
                 </div>
                 
-                <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16">
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
                     <div>
-                        <div class="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                        <div class="inline-block bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                             COMPENSATION TRANSPARENCY
                         </div>
-                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-primary mb-6">
+                        <h3 class="font-display text-3xl font-bold text-blue-600 mb-6">
                             Know Your Worth Before You Apply
                         </h3>
                         <div class="space-y-4">
@@ -433,8 +285,8 @@
                                     <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-primary mb-1">Salary Ranges by Role</h4>
-                                    <p class="text-secondary text-sm sm:text-base">Detailed compensation data broken down by experience level and location</p>
+                                    <h4 class="font-semibold text-blue-600 mb-1">Salary Ranges by Role</h4>
+                                    <p class="text-gray-700">Detailed compensation data broken down by experience level and location</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -442,8 +294,8 @@
                                     <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-primary mb-1">Benefits Analysis</h4>
-                                    <p class="text-secondary text-sm sm:text-base">Comprehensive breakdown of health, retirement, and additional benefits</p>
+                                    <h4 class="font-semibold text-blue-600 mb-1">Benefits Analysis</h4>
+                                    <p class="text-gray-700">Comprehensive breakdown of health, retirement, and additional benefits</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -451,35 +303,35 @@
                                     <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-primary mb-1">Market Comparisons</h4>
-                                    <p class="text-secondary text-sm sm:text-base">See how companies stack up against industry and regional standards</p>
+                                    <h4 class="font-semibold text-blue-600 mb-1">Market Comparisons</h4>
+                                    <p class="text-gray-700">See how companies stack up against industry and regional standards</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 rounded-3xl p-6 sm:p-8">
-                        <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                    <div class="bg-gray-50 rounded-3xl p-8">
+                        <div class="bg-white rounded-2xl p-6 shadow-sm">
                             <div class="flex items-center justify-between mb-4">
-                                <h4 class="font-semibold text-primary text-sm sm:text-base">Senior Software Engineer</h4>
-                                <span class="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">Verified</span>
+                                <h4 class="font-semibold text-blue-600">Senior Software Engineer</h4>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">✓ Verified</span>
                             </div>
                             <div class="space-y-3">
                                 <div class="flex justify-between">
-                                    <span class="text-secondary text-sm sm:text-base">Base Salary</span>
-                                    <span class="font-semibold text-sm sm:text-base">$120k - $150k</span>
+                                    <span class="text-gray-600">Base Salary</span>
+                                    <span class="font-semibold">$120k - $150k</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-secondary text-sm sm:text-base">Annual Bonus</span>
-                                    <span class="font-semibold text-sm sm:text-base">$15k - $25k</span>
+                                    <span class="text-gray-600">Annual Bonus</span>
+                                    <span class="font-semibold">$15k - $25k</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-secondary text-sm sm:text-base">Stock Options</span>
-                                    <span class="font-semibold text-sm sm:text-base">$20k - $40k</span>
+                                    <span class="text-gray-600">Stock Options</span>
+                                    <span class="font-semibold">$20k - $40k</span>
                                 </div>
                                 <div class="border-t pt-3">
-                                    <div class="flex justify-between font-semibold">
-                                        <span class="text-sm sm:text-base">Total Compensation</span>
-                                        <span class="text-accent text-sm sm:text-base">$155k - $215k</span>
+                                    <div class="flex justify-between font-bold">
+                                        <span>Total Compensation</span>
+                                        <span class="text-orange-600">$155k - $215k</span>
                                     </div>
                                 </div>
                             </div>
@@ -487,45 +339,45 @@
                     </div>
                 </div>
                 
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card">
                         <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
                             <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                             </svg>
                         </div>
-                        <h4 class="font-semibold text-primary mb-2">Interview Experiences</h4>
-                        <p class="text-secondary text-sm">Detailed interview processes, questions, and preparation tips from actual candidates.</p>
+                        <h4 class="font-semibold text-blue-600 mb-2">Interview Experiences</h4>
+                        <p class="text-gray-600 text-sm">Detailed interview processes, questions, and preparation tips from actual candidates.</p>
                     </div>
                     
-                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                    <div class="card">
                         <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
                             <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                             </svg>
                         </div>
-                        <h4 class="font-semibold text-primary mb-2">Company Culture</h4>
-                        <p class="text-secondary text-sm">Authentic insights into work environment, values, and day-to-day experiences.</p>
+                        <h4 class="font-semibold text-blue-600 mb-2">Company Culture</h4>
+                        <p class="text-gray-600 text-sm">Authentic insights into work environment, values, and day-to-day experiences.</p>
                     </div>
                     
-                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                    <div class="card">
                         <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
                             <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                             </svg>
                         </div>
-                        <h4 class="font-semibold text-primary mb-2">Career Growth</h4>
-                        <p class="text-secondary text-sm">Promotion timelines, skill development opportunities, and advancement paths.</p>
+                        <h4 class="font-semibold text-blue-600 mb-2">Career Growth</h4>
+                        <p class="text-gray-600 text-sm">Promotion timelines, skill development opportunities, and advancement paths.</p>
                     </div>
                     
-                    <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover">
+                    <div class="card">
                         <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
                             <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                             </svg>
                         </div>
-                        <h4 class="font-semibold text-primary mb-2">Performance Metrics</h4>
-                        <p class="text-secondary text-sm">Company performance indicators, employee satisfaction scores, and retention rates.</p>
+                        <h4 class="font-semibold text-blue-600 mb-2">Performance Metrics</h4>
+                        <p class="text-gray-600 text-sm">Company performance indicators, employee satisfaction scores, and retention rates.</p>
                     </div>
                 </div>
             </div>
@@ -533,85 +385,115 @@
 
 
         <!-- CTA Section -->
-    <section id="signup" class="py-24 bg-primary">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6">
-                Ready to Make Smarter Career Decisions?
-            </h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-                Join our exclusive waitlist and be among the first to access the most comprehensive 
-                workplace intelligence platform.
-            </p>
-            
-            <form id="subscription-form" class="max-w-md mx-auto mb-8">
-                <div class="flex flex-col md:flex-row gap-4">
-                    <input 
-                        type="email" 
-                        id="email-input"
-                        placeholder="Enter your professional email" 
-                        required
-                        class="flex-1 px-6 py-4 rounded-full text-lg focus:outline-none focus:ring-4 focus:ring-accent/30 bg-white text-gray-900"
-                    >
-                    <button 
-                        type="submit" 
-                        id="submit-button"
-                        class="bg-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-600 focus:bg-blue-600 transition-colors whitespace-nowrap min-w-[140px]"
-                    >
-                        <div class="button-content">
-                            <span id="button-text">Join Waitlist</span>
-                            <div id="button-spinner" class="loading-spinner hidden"></div>
-                        </div>
-                    </button>
+        <section id="signup" class="py-24 bg-gradient-to-br from-gray-900 via-blue-800 to-purple-800 relative overflow-hidden">
+            <div class="container text-center relative z-10">
+                <div class="inline-block bg-white/10 text-white px-6 py-2 rounded-full text-sm font-bold mb-6 animate-fade-in">
+                    JOIN THE WORKPLACE
                 </div>
-            </form>
-            
-            <div class="flex flex-wrap justify-center items-center gap-8 text-gray-400">
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span id="waitlist-count">Loading...</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Privacy Protected</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>No Spam, Ever</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-8 animate-slide-up">
+                    Ready to Transform Your
+                    <span class="gradient-text block mt-2">Career Journey?</span>
+                </h2>
+                <p class="text-xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-up">
+                    Join thousands of professionals and be among the first to access The Workplace's 
+                    comprehensive career intelligence platform.
+                </p>
+                
+                <form id="subscription-form" class="max-w-2xl mx-auto mb-8">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <input 
+                            type="email" 
+                            id="email-input"
+                            placeholder="Enter your professional email" 
+                            required
+                            class="form-input flex-1 text-lg px-6 py-4"
+                            aria-label="Email address"
+                            style="min-height: 4rem; font-size: 1.25rem;"
+                        >
+                        <button 
+                            type="submit" 
+                            id="submit-button"
+                            class="btn btn-accent text-lg px-8 py-4 min-w-[200px]"
+                            style="min-height: 4rem; font-size: 1.25rem;"
+                        >
+                            <div class="button-content">
+                                <span id="button-text">Join The Workplace</span>
+                                <div id="button-spinner" class="loading-spinner hidden"></div>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="flex flex-wrap justify-center items-center gap-8 text-gray-300 animate-fade-in">
+                    <div class="glass-effect px-4 py-2 rounded-full flex items-center gap-3">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span id="waitlist-count" class="font-medium">Loading...</span>
+                    </div>
+                    <div class="glass-effect px-4 py-2 rounded-full flex items-center gap-3">
+                        <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium">Privacy Protected</span>
+                    </div>
+                    <div class="glass-effect px-4 py-2 rounded-full flex items-center gap-3">
+                        <svg class="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-medium">No Spam, Ever</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="footer">
+        <div class="footer-bg" aria-hidden="true">
+            <div style="top: 0; right: 0; width: 24rem; height: 24rem; background: var(--accent); border-radius: 50%; filter: blur(60px);"></div>
+            <div style="bottom: 0; left: 0; width: 18rem; height: 18rem; background: var(--success); border-radius: 50%; filter: blur(60px);"></div>
+        </div>
+        
+        <div class="container footer-content">
             <div class="grid md:grid-cols-3 gap-8 mb-12">
                 <div class="md:col-span-2">
-                    <div class="font-display text-3xl font-bold mb-4">theworkplace.</div>
-                    <p class="text-gray-400 max-w-md">
-                        Professional workplace intelligence platform providing verified insights 
-                        for smarter career decisions.
+                    <div class="footer-brand gradient-text">
+                        theworkplace.
+                    </div>
+                    <p class="text-gray-300 max-w-md leading-relaxed text-lg">
+                        Transforming workplace transparency through intelligent data insights and authentic professional experiences. 
+                        Join The Workplace revolution of informed career decisions.
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="mailto:contact@theworkplace.co" class="hover:text-white transition-colors">contact@theworkplace.co</a></li>
+                    <h4 class="font-display font-bold mb-6 text-xl">Get in Touch</h4>
+                    <ul class="footer-links space-y-3">
+                        <li>
+                            <a href="mailto:contact@theworkplace.co" target="_blank" rel="noopener">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                                contact@theworkplace.co
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/theworkplacehq" target="_blank" rel="noopener">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                GitHub
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="section-divider mb-8"></div>
+            <div class="section-divider"></div>
             
-            <div class="flex flex-col md:flex-row justify-center items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">
-                    © 2025 The Workplace. All rights reserved.
+            <div class="text-center">
+                <p class="text-gray-400 font-medium">
+                    © 2025 The Workplace. All rights reserved. Built with 💜 for professionals everywhere.
                 </p>
             </div>
         </div>
@@ -938,7 +820,7 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            log('Application initializing...');
+            log('The Workplace application initializing...');
             
             // Attach form handler
             const form = document.getElementById('subscription-form');
@@ -973,22 +855,18 @@
                 });
             });
 
-            // Navbar scroll effect
+            // Enhanced navbar scroll effect
             window.addEventListener('scroll', function() {
-                const nav = document.querySelector('nav');
+                const nav = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
-                    nav.classList.add('bg-white/95');
-                    nav.classList.remove('bg-white/80');
+                    nav.style.background = 'rgba(255, 255, 255, 0.95)';
                 } else {
-                    nav.classList.add('bg-white/80');
-                    nav.classList.remove('bg-white/95');
+                    nav.style.background = 'rgba(255, 255, 255, 0.85)';
                 }
             });
 
-            log('Application initialized successfully');
+            log('The Workplace application initialized successfully');
         });
     </script>
-
-    
 </body>
 </html>
