@@ -80,7 +80,7 @@
                 min-height: 500px;
             }
             
-            #survey-iframe {
+            #survey-iframe, #survey-iframe-2 {
                 height: 2400px !important;
             }
             
@@ -97,12 +97,26 @@
         }
         
         @media (max-width: 480px) {
-            #survey-iframe {
+            #survey-iframe, #survey-iframe-2 {
                 height: 2200px !important;
             }
             
             .survey-form-header {
                 padding: 1rem;
+            }
+        }
+        
+        /* Additional responsive styles for side-by-side layout */
+        @media (min-width: 1280px) {
+            .survey-form-container {
+                height: auto;
+                min-height: 750px;
+            }
+        }
+        
+        @media (max-width: 1279px) {
+            .grid.xl\\:grid-cols-2 {
+                gap: 2rem;
             }
         }
         
@@ -275,70 +289,194 @@
                     </div>
                 </div>
                 
-                <!-- Form Container -->
-                <div class="flex justify-center">
-                    <div class="w-full max-w-5xl">
-                        <!-- Form wrapper with enhanced styling -->
-                        <div class="survey-form-container relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
-                            <!-- Header with modern styling -->
-                            <div class="survey-form-header bg-gradient-to-r from-orange-50 to-blue-50 px-6 py-4 border-b border-gray-100">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-3 h-3 bg-red-400 rounded-full"></div>
-                                        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                                        <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-                                    </div>
-                                    <div class="text-sm text-gray-700 font-medium">The Workplace Professional Survey</div>
+                <!-- Forms Container with Responsive Grid -->
+                <div class="w-full max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
+                        
+                        <!-- First Form Column -->
+                        <div class="space-y-6">
+                            <!-- First Form Header -->
+                            <div class="text-center">
+                                <div class="inline-block bg-gradient-to-r from-orange-100 to-blue-100 text-gray-700 px-6 py-3 rounded-full text-lg font-bold mb-4">
+                                    İşaxtaranlar üçün Sorğu
                                 </div>
-                            </div>
-                            
-                            <!-- Loading state -->
-                            <div id="form-loading" class="absolute inset-0 bg-white/95 flex flex-col items-center justify-center z-20">
-                                <div class="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mb-4"></div>
-                                <p class="text-gray-700 font-medium">Loading The Workplace survey...</p>
-                                <p class="text-sm text-gray-500 mt-1">Please wait a moment</p>
-                            </div>
-                            
-                            <!-- Error state -->
-                            <div id="form-error" class="absolute inset-0 bg-white/95 flex flex-col items-center justify-center z-20 hidden">
-                                <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
-                                    <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700 font-medium mb-2">Unable to load The Workplace survey</p>
-                                <p class="text-sm text-gray-500 mb-4 text-center max-w-md">
-                                    The survey form couldn't be loaded. Please try refreshing the page or contact us if the problem persists.
-                                </p>
-                                <button onclick="retryLoadForm()" class="btn btn-accent">
-                                    Try Again
-                                </button>
-                            </div>
-                            
-                            <!-- Iframe container with responsive height -->
-                            <div class="iframe-container relative survey-iframe">
-                                <iframe
-                                    id="survey-iframe"
-                                    src="https://docs.google.com/forms/d/e/1FAIpQLSd5qDC5Y95lXjFoHMrCiKofqtI-Aa42ffNxKYcCzlwfhARdVw/viewform?embedded=true"
-                                    width="100%"
-                                    height="700"
-                                    frameborder="0"
-                                    marginheight="0"
-                                    marginwidth="0"
-                                    loading="lazy"
-                                    title="The Workplace Professional Survey"
-                                    class="w-full transition-opacity duration-500 opacity-0 relative z-10"
-                                    onload="handleFormLoad()"
-                                    onerror="handleFormError()">
-                                    <p class="p-8 text-center text-gray-700">
-                                        Your browser doesn't support iframes.
-                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5qDC5Y95lXjFoHMrCiKofqtI-Aa42ffNxKYcCzlwfhARdVw/viewform" target="_blank" rel="noopener" class="text-orange-600 hover:underline">
-                                            Open The Workplace survey in a new window
-                                        </a>
+                                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-lg">
+                                    <h3 class="font-display text-xl font-bold text-gray-900 mb-3">
+                                        İş Axtaranların Rəqəmsal Platformalara Yanaşması və Gözləntiləri
+                                    </h3>
+                                    <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                                        Bu sorğu, Azərbaycanda iş axtaran şəxslərin rəqəmsal platformalardan (boss.az, glorri.az, LinkedIn və s.) 
+                                        istifadə təcrübələrini, qarşılaşdıqları çətinlikləri və yeni nəsil iş platformalarından gözləntilərini 
+                                        anlamaq məqsədi daşıyır.
                                     </p>
-                                </iframe>
+                                    <div class="flex items-center justify-center gap-4 text-xs text-gray-600">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                            <span>100% Anonim</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                            <span>5-7 dəqiqə</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- First Form Container -->
+                            <div class="survey-form-container relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+                                <!-- Header with modern styling -->
+                                <div class="survey-form-header bg-gradient-to-r from-orange-50 to-blue-50 px-6 py-4 border-b border-gray-100">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                            <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                            <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                        </div>
+                                        <div class="text-sm text-gray-700 font-medium">İş Axtaranlar Sorğusu</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Loading state -->
+                                <div id="form-loading" class="absolute inset-0 bg-white/95 flex flex-col items-center justify-center z-20">
+                                    <div class="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mb-4"></div>
+                                    <p class="text-gray-700 font-medium">Sorğu yüklənir...</p>
+                                    <p class="text-sm text-gray-500 mt-1">Xahiş edirik, gözləyin</p>
+                                </div>
+                                
+                                <!-- Error state -->
+                                <div id="form-error" class="absolute inset-0 bg-white/95 flex flex-col items-center justify-center z-20 hidden">
+                                    <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
+                                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-700 font-medium mb-2">Sorğu yüklənə bilmədi</p>
+                                    <p class="text-sm text-gray-500 mb-4 text-center max-w-md">
+                                        Sorğu formu yüklənə bilmədi. Səhifəni yeniləyin və ya bizimlə əlaqə saxlayın.
+                                    </p>
+                                    <button onclick="retryLoadForm()" class="btn btn-accent">
+                                        Yenidən cəhd et
+                                    </button>
+                                </div>
+                                
+                                <!-- Iframe container with responsive height -->
+                                <div class="iframe-container relative survey-iframe">
+                                    <iframe
+                                        id="survey-iframe"
+                                        src="https://docs.google.com/forms/d/e/1FAIpQLSd5qDC5Y95lXjFoHMrCiKofqtI-Aa42ffNxKYcCzlwfhARdVw/viewform?embedded=true"
+                                        width="100%"
+                                        height="700"
+                                        frameborder="0"
+                                        marginheight="0"
+                                        marginwidth="0"
+                                        loading="lazy"
+                                        title="İş Axtaranlar Sorğusu"
+                                        class="w-full transition-opacity duration-500 opacity-0 relative z-10"
+                                        onload="handleFormLoad()"
+                                        onerror="handleFormError()">
+                                        <p class="p-8 text-center text-gray-700">
+                                            Brauzeriniz iframe dəstəkləmir.
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5qDC5Y95lXjFoHMrCiKofqtI-Aa42ffNxKYcCzlwfhARdVw/viewform" target="_blank" rel="noopener" class="text-orange-600 hover:underline">
+                                                Sorğunu yeni pəncərədə açın
+                                            </a>
+                                        </p>
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
+                        
+                        <!-- Second Form Column -->
+                        <div class="space-y-6">
+                            <!-- Second Form Header -->
+                            <div class="text-center">
+                                <div class="inline-block bg-gradient-to-r from-blue-100 to-orange-100 text-gray-700 px-6 py-3 rounded-full text-lg font-bold mb-4">
+                                    İşəgötürənlər üçün Sorğu
+                                </div>
+                                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-lg">
+                                    <h3 class="font-display text-xl font-bold text-gray-900 mb-3">
+                                        İşəgötürənlərin və HR Mütəxəssislərinin Rəqəmsal İşə Qəbul Platformalarına Yanaşması
+                                    </h3>
+                                    <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                                        Bu sorğu, şirkətlərin və HR mütəxəssislərinin rəqəmsal işə qəbul platformalarından istifadə 
+                                        təcrübələrini, ehtiyaclarını və qarşılaşdıqları çətinlikləri öyrənmək məqsədi ilə hazırlanıb.
+                                    </p>
+                                    <div class="flex items-center justify-center gap-4 text-xs text-gray-600">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                            <span>100% Anonim</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                            <span>5-7 dəqiqə</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Second Form Container -->
+                            <div class="survey-form-container relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+                                <!-- Header with modern styling -->
+                                <div class="survey-form-header bg-gradient-to-r from-blue-50 to-orange-50 px-6 py-4 border-b border-gray-100">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                            <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                            <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                        </div>
+                                        <div class="text-sm text-gray-700 font-medium">İşəgötürənlər Sorğusu</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Loading state -->
+                                <div id="form-loading-2" class="absolute inset-0 bg-white/95 flex flex-col items-center justify-center z-20">
+                                    <div class="w-12 h-12 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin mb-4"></div>
+                                    <p class="text-gray-700 font-medium">Sorğu yüklənir...</p>
+                                    <p class="text-sm text-gray-500 mt-1">Xahiş edirik, gözləyin</p>
+                                </div>
+                                
+                                <!-- Error state -->
+                                <div id="form-error-2" class="absolute inset-0 bg-white/95 flex flex-col items-center justify-center z-20 hidden">
+                                    <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
+                                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-700 font-medium mb-2">Sorğu yüklənə bilmədi</p>
+                                    <p class="text-sm text-gray-500 mb-4 text-center max-w-md">
+                                        Sorğu formu yüklənə bilmədi. Səhifəni yeniləyin və ya bizimlə əlaqə saxlayın.
+                                    </p>
+                                    <button onclick="retryLoadForm2()" class="btn btn-accent">
+                                        Yenidən cəhd et
+                                    </button>
+                                </div>
+                                
+                                <!-- Iframe container with responsive height -->
+                                <div class="iframe-container relative survey-iframe">
+                                    <iframe
+                                        id="survey-iframe-2"
+                                        src="https://docs.google.com/forms/d/e/1FAIpQLSddNXi2k2Tih4hDtLZgS-xUl7U3FGP1xrJ_RwmUcm3jqEC57w/viewform?embedded=true"
+                                        width="100%"
+                                        height="700"
+                                        frameborder="0"
+                                        marginheight="0"
+                                        marginwidth="0"
+                                        loading="lazy"
+                                        title="İşəgötürənlər Sorğusu"
+                                        class="w-full transition-opacity duration-500 opacity-0 relative z-10"
+                                        onload="handleFormLoad2()"
+                                        onerror="handleFormError2()">
+                                        <p class="p-8 text-center text-gray-700">
+                                            Brauzeriniz iframe dəstəkləmir.
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSddNXi2k2Tih4hDtLZgS-xUl7U3FGP1xrJ_RwmUcm3jqEC57w/viewform" target="_blank" rel="noopener" class="text-orange-600 hover:underline">
+                                                Sorğunu yeni pəncərədə açın
+                                            </a>
+                                        </p>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                         
                         <!-- Call to action below form -->
                         <div class="text-center mt-8">
@@ -503,6 +641,85 @@
             }
         }
 
+        // Second survey form handling functions
+        function handleFormLoad2() {
+            log('The Workplace additional survey form loaded successfully');
+            const loadingDiv = document.getElementById('form-loading-2');
+            const iframe = document.getElementById('survey-iframe-2');
+            const errorDiv = document.getElementById('form-error-2');
+            const iframeContainer = iframe?.parentElement;
+            
+            if (loadingDiv) {
+                loadingDiv.style.opacity = '0';
+                setTimeout(() => {
+                    loadingDiv.style.display = 'none';
+                }, 300);
+            }
+            
+            if (iframe) {
+                iframe.style.opacity = '1';
+            }
+            
+            if (iframeContainer) {
+                iframeContainer.classList.add('iframe-loaded');
+            }
+            
+            if (errorDiv) {
+                errorDiv.style.display = 'none';
+            }
+        }
+
+        function handleFormError2() {
+            log('The Workplace additional survey form failed to load');
+            const loadingDiv = document.getElementById('form-loading-2');
+            const errorDiv = document.getElementById('form-error-2');
+            const iframe = document.getElementById('survey-iframe-2');
+            
+            if (loadingDiv) {
+                loadingDiv.style.display = 'none';
+            }
+            
+            if (errorDiv) {
+                errorDiv.style.display = 'flex';
+                errorDiv.classList.remove('hidden');
+            }
+            
+            if (iframe) {
+                iframe.style.display = 'none';
+            }
+        }
+
+        function retryLoadForm2() {
+            log('Retrying additional form load');
+            const loadingDiv = document.getElementById('form-loading-2');
+            const errorDiv = document.getElementById('form-error-2');
+            const iframe = document.getElementById('survey-iframe-2');
+            
+            // Show loading state
+            if (loadingDiv) {
+                loadingDiv.style.display = 'flex';
+                loadingDiv.style.opacity = '1';
+            }
+            
+            // Hide error state
+            if (errorDiv) {
+                errorDiv.style.display = 'none';
+                errorDiv.classList.add('hidden');
+            }
+            
+            // Reset and reload iframe
+            if (iframe) {
+                iframe.style.display = 'block';
+                iframe.style.opacity = '0';
+                // Force reload by changing src
+                const originalSrc = iframe.src;
+                iframe.src = '';
+                setTimeout(() => {
+                    iframe.src = originalSrc;
+                }, 100);
+            }
+        }
+
         // Navigation functions
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
@@ -538,9 +755,11 @@
             setTimeout(() => {
                 const loadingDiv = document.getElementById('form-loading');
                 const iframe = document.getElementById('survey-iframe');
+                const loadingDiv2 = document.getElementById('form-loading-2');
+                const iframe2 = document.getElementById('survey-iframe-2');
                 
                 if (loadingDiv && loadingDiv.style.display !== 'none') {
-                    log('Auto-hiding loading state after timeout');
+                    log('Auto-hiding first form loading state after timeout');
                     loadingDiv.style.opacity = '0';
                     setTimeout(() => {
                         loadingDiv.style.display = 'none';
@@ -548,6 +767,18 @@
                     
                     if (iframe) {
                         iframe.style.opacity = '1';
+                    }
+                }
+                
+                if (loadingDiv2 && loadingDiv2.style.display !== 'none') {
+                    log('Auto-hiding second form loading state after timeout');
+                    loadingDiv2.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingDiv2.style.display = 'none';
+                    }, 300);
+                    
+                    if (iframe2) {
+                        iframe2.style.opacity = '1';
                     }
                 }
             }, 8000); // 8 second timeout
