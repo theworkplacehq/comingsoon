@@ -135,7 +135,7 @@
                 <!-- Desktop Navigation -->
                 <div class="navbar-nav">
                     <a href="#features">Features</a>
-                    <a href="survey.html">Survey</a>
+                    <a href="survey.html#survey-section">Survey</a>
                     <a href="mailto:salam@theworkplace.co" target="_blank" rel="noopener">Contact</a>
                     <a href="https://github.com/theworkplacehq" target="_blank" rel="noopener">GitHub</a>
                     <button onclick="scrollToSignup()" class="btn btn-primary">
@@ -155,7 +155,7 @@
         <!-- Mobile Navigation -->
         <div id="mobile-menu" class="mobile-menu">
             <a href="#features" onclick="closeMobileMenu()">Features</a>
-            <a href="survey.html" onclick="closeMobileMenu()">Survey</a>
+            <a href="survey.html#survey-section" onclick="closeMobileMenu()">Survey</a>
             <a href="mailto:salam@theworkplace.co" onclick="closeMobileMenu()" target="_blank" rel="noopener">Contact</a>
             <a href="https://github.com/theworkplacehq" onclick="closeMobileMenu()" target="_blank" rel="noopener">GitHub</a>
             <button onclick="scrollToSignup(); closeMobileMenu();" class="btn btn-primary w-full mt-4">
@@ -725,12 +725,12 @@
                 
                 // Redirect after brief delay
                 setTimeout(() => {
-                    window.open('survey.html', '_blank', 'noopener,noreferrer');
+                    window.open('survey.html#survey-section', '_blank', 'noopener,noreferrer');
                     dismissNotification(notification);
                 }, 1500);
             } else {
                 // Direct redirect if notification is gone
-                window.open('survey.html', '_blank', 'noopener,noreferrer');
+                window.open('survey.html#survey-section', '_blank', 'noopener,noreferrer');
             }
         }
 
