@@ -68,6 +68,52 @@
             }
         }
     </script>
+    
+    <!-- Enhanced Notification Styles -->
+    <style>
+        .notification-message {
+            transform: translateX(100%);
+            opacity: 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .notification-message.hiding {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        
+        @media (max-width: 640px) {
+            .notification-message {
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+                transform: translateY(-100%);
+            }
+            
+            .notification-message.hiding {
+                transform: translateY(-100%);
+            }
+        }
+        
+        .survey-invitation-card {
+            animation: slideInAndPulse 0.6s ease-out;
+        }
+        
+        @keyframes slideInAndPulse {
+            0% {
+                transform: translateX(100%) scale(0.95);
+                opacity: 0;
+            }
+            70% {
+                transform: translateX(-10px) scale(1.02);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -417,7 +463,7 @@
                             style="min-height: 4rem; font-size: 1.25rem;"
                         >
                             <div class="button-content">
-                                <span id="button-text">Join The Workplace</span>
+                                <span id="button-text">Join Waitlist</span>
                                 <div id="button-spinner" class="loading-spinner hidden"></div>
                             </div>
                         </button>
@@ -612,6 +658,96 @@
             }
         }
 
+        function showSuccessWithSurveyRedirect(message, userType) {
+            setFormState('success');
+            
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification-message');
+            if (existingNotification) {
+                existingNotification.classList.add('hiding');
+                setTimeout(() => existingNotification.remove(), 300);
+            }
+
+            // Create enhanced notification with survey invitation
+            const notification = document.createElement('div');
+            notification.className = 'notification-message survey-invitation-card fixed top-20 right-4 max-w-md px-6 py-6 rounded-2xl shadow-xl z-50 border bg-gradient-to-r from-green-500 to-emerald-600 text-white border-green-600 transition-all duration-500';
+            
+            notification.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">🎉</span>
+                        <div class="flex-1">
+                            <p class="font-semibold text-lg">${message}</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/20 rounded-xl p-4">
+                        <p class="text-sm text-green-50 mb-3">
+                            📋 Help us build better by taking our 4-minute survey
+                        </p>
+                        <div class="flex gap-2">
+                            <button onclick="redirectToSurvey()" class="flex-1 bg-white text-green-600 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-green-50 transition-colors">
+                                Share Insights
+                            </button>
+                            <button onclick="dismissNotification(this)" class="px-4 py-2 text-green-100 hover:text-white text-sm transition-colors">
+                                Later
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+            
+            // Smooth entrance animation
+            requestAnimationFrame(() => {
+                notification.style.transform = 'translateX(0)';
+                notification.style.opacity = '1';
+            });
+
+            // Auto remove after extended time to allow user interaction
+            setTimeout(() => {
+                if (notification.parentNode && !notification.classList.contains('user-dismissed')) {
+                    dismissNotification(notification);
+                }
+            }, 15000); // 15 seconds for survey invitation
+        }
+
+        function redirectToSurvey() {
+            // Smooth transition with loading state
+            const notification = document.querySelector('.notification-message');
+            if (notification) {
+                notification.innerHTML = `
+                    <div class="flex items-center gap-3 justify-center py-2">
+                        <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        <span class="font-medium">Redirecting to survey...</span>
+                    </div>
+                `;
+                
+                // Redirect after brief delay
+                setTimeout(() => {
+                    window.open('survey.html', '_blank', 'noopener,noreferrer');
+                    dismissNotification(notification);
+                }, 1500);
+            } else {
+                // Direct redirect if notification is gone
+                window.open('survey.html', '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        function dismissNotification(element) {
+            const notification = element.closest ? element.closest('.notification-message') : element;
+            if (notification) {
+                notification.classList.add('user-dismissed');
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }
+        }
+
         async function updateSubscriberCount() {
             try {
                 log('Fetching subscriber count...');
@@ -761,22 +897,14 @@
 
                 // Handle successful responses
                 if (data.alreadySubscribed) {
-                    showNotification('This email is already on our waitlist! We\'ll notify you when we launch.', 'warning', 6000);
-                    setFormState('success');
-                } else if (data.isResubscription) {
-                    showNotification('✨ You\'re back on the waitlist! We\'ll keep you updated on The Workplace.', 'success', 7000);
-                    setFormState('success');
-                    // Update subscriber count
-                    setTimeout(updateSubscriberCount, 1000);
+                    showSuccessWithSurveyRedirect('You\'re already on our waitlist! Help us build The Workplace by sharing your insights.', 'existing');
                 } else if (data.isNewSubscription) {
-                    showNotification('🎉 Welcome to the waitlist! We\'ll notify you when The Workplace launches.', 'success', 7000);
-                    setFormState('success');
+                    showSuccessWithSurveyRedirect('Welcome to The Workplace! Help us build the platform by sharing your professional insights.', 'new');
                     // Update subscriber count
                     setTimeout(updateSubscriberCount, 1000);
                 } else {
                     // Generic success message
-                    showNotification('Successfully subscribed to the waitlist!', 'success', 7000);
-                    setFormState('success');
+                    showSuccessWithSurveyRedirect('Successfully joined The Workplace! Help us build the platform by sharing your insights.', 'new');
                     setTimeout(updateSubscriberCount, 1000);
                 }
 
