@@ -1,0 +1,376 @@
+openapi: 3.0.3
+info:
+  title: Email Subscribers API
+  description: |
+    A comprehensive API for managing email subscribers with subscription and unsubscription capabilities.
+    
+    This API follows Clean Architecture principles and provides secure endpoints for email subscription management.
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8080
+    description: Development server
+  - url: http://localhost:8081
+    description: Docker development server
+  - url: https://email.theworkplace.co
+    description: Production Server
+
+paths:
+  /:
+    get:
+      summary: Root endpoint
+      description: Returns a simple greeting message
+      operationId: getRoot
+      tags:
+        - General
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Hello world!"
+
+  /email-subscribers:
+    get:
+      summary: List email subscribers
+      description: |
+        Retrieves a list of email subscribers with optional filtering by subscription status.
+        Returns a count of subscribers and their status.
+      operationId: listEmailSubscribers
+      tags:
+        - Email Subscribers
+      parameters:
+        - name: status
+          in: query
+          description: Filter subscribers by subscription status
+          required: false
+          schema:
+            type: string
+            enum: [subscribed, all]
+            default: all
+            example: subscribed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriberListResponse'
+              examples:
+                subscribed_only:
+                  summary: Subscribed users only
+                  value:
+                    statusCode: 200
+                    data:
+                      count: 1250
+                      status: "subscribed"
+                all_users:
+                  summary: All users
+                  value:
+                    statusCode: 200
+                    data:
+                      count: 1350
+                      status: "all"
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    options:
+      summary: CORS preflight request
+      description: Handles CORS preflight requests for email subscribers endpoint
+      operationId: optionsEmailSubscribers
+      tags:
+        - CORS
+      responses:
+        '200':
+          description: CORS preflight response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+
+  /email-subscribers/subscribe:
+    post:
+      summary: Subscribe an email address
+      description: |
+        Subscribes an email address to the mailing list. 
+        
+        - If the email doesn't exist, creates a new subscription
+        - If the email exists but is unsubscribed, resubscribes it
+        - If the email is already subscribed, returns an error
+      operationId: subscribeEmail
+      tags:
+        - Email Subscribers
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmailRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailRequest'
+      responses:
+        '200':
+          description: Email resubscribed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriberResponse'
+              example:
+                statusCode: 200
+                data:
+                  id: 123
+                  email: "user@example.com"
+                  status: "subscribed"
+                  subscribedAt: "2024-01-15 10:30:00"
+                  unsubscribedAt: null
+        '201':
+          description: New email subscribed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriberResponse'
+              example:
+                statusCode: 201
+                data:
+                  id: 124
+                  email: "newuser@example.com"
+                  status: "subscribed"
+                  subscribedAt: "2024-01-15 10:35:00"
+                  unsubscribedAt: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    options:
+      summary: CORS preflight request
+      description: Handles CORS preflight requests for subscribe endpoint
+      operationId: optionsSubscribe
+      tags:
+        - CORS
+      responses:
+        '200':
+          description: CORS preflight response
+
+components:
+  schemas:
+    EmailSubscriber:
+      type: object
+      description: Email subscriber entity
+      properties:
+        id:
+          type: integer
+          nullable: true
+          description: Unique identifier for the subscriber
+          example: 123
+        email:
+          type: string
+          format: email
+          description: Email address of the subscriber (stored in lowercase)
+          example: "user@example.com"
+        status:
+          type: string
+          enum: [subscribed, unsubscribed]
+          description: Current subscription status
+          example: "subscribed"
+        subscribedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the email was first subscribed
+          example: "2024-01-15 10:30:00"
+        unsubscribedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp when the email was unsubscribed (null if never unsubscribed)
+          example: "2024-01-15 11:45:00"
+      required:
+        - email
+        - status
+        - subscribedAt
+
+    EmailRequest:
+      type: object
+      description: Request body for email subscription operations
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address to subscribe/unsubscribe
+          example: "user@example.com"
+      required:
+        - email
+
+    SubscriberListResponse:
+      type: object
+      description: Response for listing subscribers
+      properties:
+        statusCode:
+          type: integer
+          description: HTTP status code
+          example: 200
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+              description: Total number of subscribers (includes base count of 1200)
+              example: 1250
+            status:
+              type: string
+              description: Filter status that was applied
+              example: "subscribed"
+          required:
+            - count
+            - status
+      required:
+        - statusCode
+        - data
+
+    SubscriberResponse:
+      type: object
+      description: Response for subscriber operations
+      properties:
+        statusCode:
+          type: integer
+          description: HTTP status code
+          example: 200
+        data:
+          $ref: '#/components/schemas/EmailSubscriber'
+      required:
+        - statusCode
+        - data
+
+    ActionError:
+      type: object
+      description: Error response structure
+      properties:
+        type:
+          type: string
+          enum:
+            - BAD_REQUEST
+            - INSUFFICIENT_PRIVILEGES
+            - NOT_ALLOWED
+            - NOT_IMPLEMENTED
+            - RESOURCE_NOT_FOUND
+            - SERVER_ERROR
+            - UNAUTHENTICATED
+            - VALIDATION_ERROR
+            - VERIFICATION_ERROR
+          description: Error type constant
+          example: "BAD_REQUEST"
+        description:
+          type: string
+          nullable: true
+          description: Human-readable error description
+          example: "Email is required"
+      required:
+        - type
+
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        statusCode:
+          type: integer
+          description: HTTP status code
+          example: 400
+        error:
+          $ref: '#/components/schemas/ActionError'
+      required:
+        - statusCode
+        - error
+
+  responses:
+    BadRequest:
+      description: Bad request - invalid input or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            email_required:
+              summary: Email is required
+              value:
+                statusCode: 400
+                error:
+                  type: "BAD_REQUEST"
+                  description: "Email is required"
+            invalid_email:
+              summary: Invalid email format
+              value:
+                statusCode: 400
+                error:
+                  type: "BAD_REQUEST"
+                  description: "Invalid email address"
+            already_subscribed:
+              summary: Email already subscribed
+              value:
+                statusCode: 400
+                error:
+                  type: "BAD_REQUEST"
+                  description: "Email is already subscribed"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            statusCode: 404
+            error:
+              type: "RESOURCE_NOT_FOUND"
+              description: "Email not found in subscription list"
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            statusCode: 500
+            error:
+              type: "SERVER_ERROR"
+              description: "An unexpected error occurred"
+
+  parameters:
+    StatusFilter:
+      name: status
+      in: query
+      description: Filter subscribers by subscription status
+      required: false
+      schema:
+        type: string
+        enum: [subscribed, all]
+        default: all
+
+tags:
+  - name: General
+    description: General API endpoints
+  - name: Email Subscribers
+    description: Email subscription management endpoints
+  - name: CORS
+    description: Cross-Origin Resource Sharing preflight handlers
+
+security: []
+
+externalDocs:
+  description: Find more information about this API
+  url: https://github.com/your-org/esapi
