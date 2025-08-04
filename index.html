@@ -28,7 +28,7 @@
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://qmzjwgefofqtahinkiil.supabase.co">
+    <link rel="dns-prefetch" href="https://email.theworkplace.co">
     <link rel="dns-prefetch" href="https://docs.google.com">
     
     <!-- Load fonts with font-display: swap for better performance -->
@@ -835,8 +835,7 @@
 
     <script>
         // Configuration
-        const SUPABASE_URL = 'https://qmzjwgefofqtahinkiil.supabase.co';
-        const SECURE_PROXY_URL = `${SUPABASE_URL}/functions/v1/secure-email-proxy`;
+        const API_BASE_URL = 'https://email.theworkplace.co';
         const DEBUG = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
         // Helper functions
@@ -1047,15 +1046,12 @@
                     waitlistCount.classList.add('counter-loading');
                 }
                 
-                // Call secure proxy for subscriber count
-                const response = await fetch(SECURE_PROXY_URL, {
-                    method: 'POST',
+                // Call new API for subscriber count
+                const response = await fetch(`${API_BASE_URL}/email-subscribers?status=subscribed`, {
+                    method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'count'
-                    })
+                    }
                 });
 
                 if (!response.ok) {
@@ -1064,11 +1060,11 @@
 
                 const data = await response.json();
                 
-                if (!data.success) {
-                    throw new Error(data.error || 'Unknown error');
+                if (data.statusCode !== 200) {
+                    throw new Error(data.error?.description || 'Unknown error');
                 }
 
-                const count = data.count;
+                const count = data.data.count;
                 log('Subscriber count received:', count);
                 
                 // Format the count for display
@@ -1149,42 +1145,45 @@
             setFormState('loading');
 
             try {
-                // Call secure proxy for subscription
-                const response = await fetch(SECURE_PROXY_URL, {
+                // Call new API for subscription
+                const response = await fetch(`${API_BASE_URL}/email-subscribers/subscribe`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        email: email,
-                        action: 'subscribe'
+                        email: email
                     })
                 });
 
                 const data = await response.json();
-                log('Secure proxy response:', { status: response.status, data });
+                log('API response:', { status: response.status, data });
 
                 if (!response.ok) {
-                    if (response.status === 403) {
-                        // Origin not allowed
-                        showNotification('Access denied: Invalid origin.', 'error');
-                        setFormState('error');
-                        return;
+                    // Handle 400 errors (validation errors)
+                    if (response.status === 400) {
+                        const errorMessage = data.error?.description || 'Invalid request';
+                        if (errorMessage.toLowerCase().includes('already subscribed')) {
+                            showSuccessWithSurveyRedirect('You\'re already on our waitlist! Help us build The Workplace by sharing your insights.', 'existing');
+                            return;
+                        } else {
+                            showNotification(errorMessage, 'error');
+                            setFormState('error');
+                            return;
+                        }
                     }
                     
-                    throw new Error(data.error || 'Server error');
-                }
-
-                if (!data.success) {
-                    throw new Error(data.error || 'Unknown error');
+                    throw new Error(data.error?.description || 'Server error');
                 }
 
                 // Handle successful responses
-                if (data.alreadySubscribed) {
-                    showSuccessWithSurveyRedirect('You\'re already on our waitlist! Help us build The Workplace by sharing your insights.', 'existing');
-                } else if (data.isNewSubscription) {
+                if (response.status === 201) {
+                    // New subscription
                     showSuccessWithSurveyRedirect('Welcome to The Workplace! Help us build the platform by sharing your professional insights.', 'new');
-                    // Update subscriber count
+                    setTimeout(updateSubscriberCount, 1000);
+                } else if (response.status === 200) {
+                    // Resubscription
+                    showSuccessWithSurveyRedirect('Welcome back to The Workplace! Help us build the platform by sharing your insights.', 'existing');
                     setTimeout(updateSubscriberCount, 1000);
                 } else {
                     // Generic success message
