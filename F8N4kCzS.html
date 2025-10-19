@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HR Micro — Sadə, sürətli vakansiya və müraciət platforması</title>
+  <meta name="description" content="Qeydiyyatsız, 1 dəqiqəyə vakansiya yarat. Müraciətlər avtomatik qruplansın: ən uyğun, qismən uyğun, əlavə baxış üçün." />
+  <link rel="icon" href="data:," />
+  <style>
+    :root{
+      --bg:#0b0d10; --card:#12151a; --muted:#8b93a1; --text:#e6e9ee;
+      --brand:#6ee7ff; --brand-2:#70ffa7; --red:#ff7a7a; --yellow:#ffd36e;
+      --radius:16px; --shadow:0 8px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 600px at 80% -10%, rgba(110,231,255,.15), transparent 60%), radial-gradient(1000px 500px at -10% 10%, rgba(112,255,167,.12), transparent 55%), var(--bg);color:var(--text);font:500 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"}
+    a{color:inherit}
+    .container{max-width:1080px;margin-inline:auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 4px 18px rgba(110,231,255,.35)}
+    .brand h1{font-size:18px;margin:0;letter-spacing:.4px}
+    nav{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid #222730;background:#141821;color:var(--text);padding:10px 14px;border-radius:12px;text-decoration:none;cursor:pointer}
+    .btn:hover{border-color:#2a3140;background:#161c26}
+    .btn.primary{border:0;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#051016;font-weight:700}
+    .btn.ghost{background:transparent;border:1px solid #2a3040}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:24px 0}
+    .hero h2{font-size:40px;line-height:1.15;margin:.1em 0 .4em}
+    .hero p{color:var(--muted);margin:0 0 1.2em}
+    .hero .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid #232836;border-radius:var(--radius);box-shadow:var(--shadow)}
+
+    .card{background:var(--card);border:1px solid #1c212c;border-radius:var(--radius);padding:18px}
+    .card h3{margin:.2em 0 .6em;font-size:18px}
+
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form .row-1{display:grid;grid-template-columns:1fr;gap:12px}
+    label{display:block;font-size:13px;color:var(--muted);margin:4px 0}
+    input, textarea, select{width:100%;padding:12px 12px;border-radius:12px;border:1px solid #293041;background:#0f131a;color:var(--text)}
+    textarea{min-height:120px;resize:vertical}
+
+    .stack{display:grid;gap:18px}
+    .muted{color:var(--muted)}
+    .hint{font-size:12px;color:var(--muted)}
+
+    .grid{display:grid;gap:16px}
+    .grid.jobs{grid-template-columns:repeat(3,1fr)}
+    .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 10px;border-radius:999px;background:#0f1520;border:1px solid #253048}
+    .badge.solid{background:#0ee8;}
+    .tag-s1{border-color:#1f3a2f;color:#b7ffd7;background:linear-gradient(180deg,rgba(112,255,167,.15),rgba(112,255,167,.03))}
+    .tag-s2{border-color:#3a351f;color:#ffe7b7;background:linear-gradient(180deg,rgba(255,211,110,.15),rgba(255,211,110,.03))}
+    .tag-s3{border-color:#3a1f1f;color:#ffb7b7;background:linear-gradient(180deg,rgba(255,122,122,.15),rgba(255,122,122,.03))}
+
+    .jobs .job{display:flex;flex-direction:column;gap:10px;padding:16px}
+    .job h4{margin:0;font-size:16px}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;color:#9aa3b2;font-size:13px}
+
+    .how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .how .step{padding:18px;border-radius:var(--radius);border:1px dashed #2a3345}
+
+    .footer{display:grid;gap:8px;place-items:center;color:#8e97a6;padding:40px 0 20px}
+
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .grid.jobs{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 680px){
+      nav{display:none}
+      .grid.jobs{grid-template-columns:1fr}
+      .hero h2{font-size:32px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="#" class="brand" aria-label="HR Micro ana səhifə">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>HR Micro</h1>
+      </a>
+      <nav>
+        <a class="btn ghost" href="#jobs">Elanlar</a>
+        <a class="btn ghost" href="#how">Necə işləyir?</a>
+        <a class="btn ghost" href="#faq">Sual-Cavab</a>
+        <a class="btn primary" href="#post">+ Elan yarat</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="post" aria-label="Elan yarat bölməsi">
+      <div>
+        <h2>Qeydiyyatsız, <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">1 dəqiqəyə</span> vakansiya yarat.</h2>
+        <p>Gələn müraciətlər avtomatik <strong>qruplansın</strong>: <em>ən uyğun</em>, <em>qismən uyğun</em>, <em>əlavə baxış</em>. Namizəd də poçtuna nəticə alsın.</p>
+        <div class="stack">
+          <div class="muted">Heç bir hesab tələb olunmur — linki paylaş, müraciətlər axsın.</div>
+          <div class="stack" style="grid-template-columns: 1fr;">
+            <a class="btn primary" href="#form">Elan yaratmağa başla</a>
+            <a class="btn" href="#jobs">Son elanlara bax</a>
+          </div>
+        </div>
+      </div>
+      <div class="card" id="form" role="region" aria-label="Elan formu">
+        <h3>Elan formu</h3>
+        <form aria-describedby="post-hint">
+          <div class="row">
+            <div>
+              <label for="title">Vəzifə*</label>
+              <input id="title" name="title" placeholder="Məs: Backend Developer" required />
+            </div>
+            <div>
+              <label for="company">Şirkət*</label>
+              <input id="company" name="company" placeholder="Məs: Eduaz Co." required />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="location">Məkan</label>
+              <input id="location" name="location" placeholder="Bakı / Remote" />
+            </div>
+            <div>
+              <label for="email">HR e‑poçtu*</label>
+              <input id="email" name="email" type="email" inputmode="email" placeholder="hr@example.com" required />
+            </div>
+          </div>
+          <div class="row-1">
+            <div>
+              <label for="desc">Açıqlama*</label>
+              <textarea id="desc" name="desc" placeholder="Tələblər, üstünlüklər, proses…" required></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="salary">Maaş aralığı</label>
+              <input id="salary" name="salary" placeholder="Məs: 2000–3000 AZN" />
+            </div>
+            <div>
+              <label for="mode">İş rejimi</label>
+              <select id="mode" name="mode">
+                <option value="">Seçin</option>
+                <option>Remote</option>
+                <option>Hibrid</option>
+                <option>Ofis</option>
+              </select>
+            </div>
+          </div>
+          <div class="row-1">
+            <button class="btn primary" type="submit">Elanı dərc et</button>
+            <div id="post-hint" class="hint">Göndərdikdən sonra paylaşım linki yaranacaq. Müraciətlər e‑poçtunuza da düşəcək.</div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="stack" id="jobs" aria-label="Son elanlar">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <h3 style="margin:0">Son elanlar</h3>
+        <div class="hint">Demo məlumatları</div>
+      </div>
+      <div class="grid jobs">
+        <article class="card job" aria-label="Backend Developer">
+          <div class="badge tag-s1" title="Ən uyğun namizədlər önə çəkiləcək">Ən uyğun gələnlər</div>
+          <h4>Backend Developer (Laravel)</h4>
+          <div class="meta">
+            <span>Eduaz Co.</span>
+            <span>•</span>
+            <span>Remote · 2,000–3,000 AZN</span>
+          </div>
+          <p class="muted">REST API, PostgreSQL, Queue, Testlər. 3+ il təcrübə.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#">Müraciət et</a>
+            <a class="btn ghost" href="#">Linki paylaş</a>
+          </div>
+        </article>
+        <article class="card job" aria-label="Frontend Developer">
+          <div class="badge tag-s2">Qismən uyğun gələnlər</div>
+          <h4>Frontend Developer (Next.js)</h4>
+          <div class="meta"><span>Core Branch</span><span>•</span><span>Hibrid · 1,800–2,600 AZN</span></div>
+          <p class="muted">Next.js, Tailwind, SSR, əsas testlər. UX hissi üstünlükdür.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#">Müraciət et</a>
+            <a class="btn ghost" href="#">Linki paylaş</a>
+          </div>
+        </article>
+        <article class="card job" aria-label="QA Engineer">
+          <div class="badge tag-s3">Əlavə baxış</div>
+          <h4>QA Engineer</h4>
+          <div class="meta"><span>Yaradıcı</span><span>•</span><span>Ofis · 1,500–2,000 AZN</span></div>
+          <p class="muted">Manual + basic automation. Postman, Playwright biliyi üstünlükdür.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#">Müraciət et</a>
+            <a class="btn ghost" href="#">Linki paylaş</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="stack" id="how" style="margin-top:32px" aria-label="Necə işləyir">
+      <h3>Necə işləyir?</h3>
+      <div class="how">
+        <div class="step">
+          <strong>1) Elanı dərc et</strong>
+          <p class="muted">Qeydiyyatsız formu doldur, paylaşım linki anında yaransın.</p>
+        </div>
+        <div class="step">
+          <strong>2) Müraciətlər qruplansın</strong>
+          <p class="muted">Namizədlər avtomatik üç qrupa düşür: ən uyğun, qismən, əlavə.</p>
+        </div>
+        <div class="step">
+          <strong>3) Avtomatik mail</strong>
+          <p class="muted">Namizəd yerləşdiyi qrupa görə avtomatik e‑poçt alsın.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="faq" style="margin-top:32px" aria-label="Sual-Cavab">
+      <h3>Tez-tez verilən suallar</h3>
+      <details>
+        <summary>Ödəniş varmı?</summary>
+        <p class="muted">MVP mərhələsində platforma tam pulsuzdur. Məqsəd rahat istifadə təcrübəsi yaratmaqdır.</p>
+      </details>
+      <details>
+        <summary>Qeydiyyat tələb olunur?</summary>
+        <p class="muted">Xeyr. Elanı dərc edib linki paylaşmağınız kifayətdir. Sonradan HR paneli üçün hesab əlavə olunacaq.</p>
+      </details>
+      <details>
+        <summary>AI uyğunluq necə işləyir?</summary>
+        <p class="muted">Hazırda sadə qaydalar və açar sözlərlə demo uyğunluq verilir. Sonrakı mərhələdə AI genişləndiriləcək.</p>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <div class="hint">© <span id="year"></span> HR Micro — Sadə, sürətli HR platforması</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn ghost" href="#">Şərtlər</a>
+        <a class="btn ghost" href="#">Məxfilik</a>
+        <a class="btn ghost" href="#">Əlaqə</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Demo-only: prevent form navigation and show a mock link
+    const form = document.querySelector('form');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('title').value || 'Vakansiya';
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/gi,'-').replace(/(^-|-$)/g,'');
+      const link = location.origin + '/j/' + slug + '-' + Math.random().toString(36).slice(2,8);
+      alert('Elan dərc olundu!\n\nPaylaşım linki:\n' + link);
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
